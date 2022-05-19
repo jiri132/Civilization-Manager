@@ -8,8 +8,11 @@ public class PopulationState
     public enum STATE { AWESOME, GREAT, GOOD,NEUTRAL, BAD, WORSE, SUICIDAL };
     public enum SMARTNES { WISE, VERYINTELIENT, INTELIGENT, DUMB };
     public enum LIVING { HOUSE, STREET, SHELTER };
+    public enum GROWN { BABY, KID, TEENAGER, ADULT, ELDER };
+
 
     public SMARTNES _SMARTNES = SMARTNES.INTELIGENT;
     public STATE _STATE = STATE.NEUTRAL;
     public LIVING _LIVING = LIVING.STREET;
+    public GROWN _GROWN = GROWN.BABY;
 }

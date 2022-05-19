@@ -5,4 +5,11 @@ using UnityEngine;
 public class PlanetManager : MonoBehaviour
 {
     public Planet Planet;
+
+
+    public void PlanetCalculation()
+    {
+
+    }
+
 }

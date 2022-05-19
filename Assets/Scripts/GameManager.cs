@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
@@ -27,7 +26,25 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    #region #start function
+    private void Start()
+    {
+        populationManager = GameObject.FindObjectOfType<PopulationManager>();
+        inventoryManager = GameObject.FindObjectOfType<inventoryManager>();
+        planetManager = GameObject.FindObjectOfType<PlanetManager>();
+    }
+    #endregion
     #region #gameLoop
+
+
+    public void DayCalculations()
+    {
+        populationManager.PopulationCalculation();
+        planetManager.PlanetCalculation();
+    }
+
+    
 
     #endregion
 }
