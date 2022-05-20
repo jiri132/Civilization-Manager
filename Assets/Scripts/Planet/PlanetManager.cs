@@ -9,7 +9,7 @@ public class PlanetManager : MonoBehaviour
 
     public void PlanetCalculation()
     {
-
+        Planet.CalculateTemperature();
     }
 
 }
