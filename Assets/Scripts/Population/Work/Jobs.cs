@@ -8,5 +8,5 @@ using UnityEngine;
 public class Jobs
 {
     public enum MASTERY { GRANDMASTER, MASTER, EXPERT, APRENTICE, NOOBY };
-    public enum JOBS { NOTHING,HOUSEBUILDER,FARMER,LUMBERER,MINER };
+    public enum JOBS { NOTHING/*,HOUSEBUILDER*/,FARMER,LUMBERER,MINER };
 }

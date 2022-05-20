@@ -12,27 +12,56 @@ public class Person
     public int workingDays = 0;
     public float health = 100;
 
+    public void MasteryCalucaltion()
+    {
+        switch (workingDays)
+        {
+            case 0:
+                work.MASTERY = Jobs.MASTERY.NOOBY;
+                break;
+            case 13:
+                work.MASTERY = Jobs.MASTERY.APRENTICE;
+                break;
+            case 20:
+                work.MASTERY = Jobs.MASTERY.MASTER;
+                break;
+            case 40:
+                work.MASTERY = Jobs.MASTERY.GRANDMASTER;
+                break;
+
+
+            default:
+                Debug.Log("NotEnogh hours to gain a new mastery");
+                break;
+        }
+    }
+
     public void DoJob()
     {
         inventoryManager im = GameManager.instance.inventoryManager;
         int x;
         switch (work.JOB)
         {
-            case Jobs.JOBS.HOUSEBUILDER:
-                x = AprenticeCheck(4);
-                GameManager.instance.populationManager.housingSpaces += x;
-                break;
+            /*case Jobs.JOBS.HOUSEBUILDER:
+                //Make this manual
+                //x = AprenticeCheck(4);
+                //GameManager.instance.populationManager.housingSpaces += x;
+                //GameManager.instance.planetManager.Planet.AddCO2(x);
+                break;*/
             case Jobs.JOBS.FARMER:
                 x = AprenticeCheck(6);
                 im.food += x;
+                GameManager.instance.planetManager.Planet.RemoveCO2(x);
                 break;
             case Jobs.JOBS.LUMBERER:
                 x = AprenticeCheck(1);
                 im.wood += x;
+                GameManager.instance.planetManager.Planet.AddCO2(x);
                 break;
             case Jobs.JOBS.MINER:
                 x = AprenticeCheck(1);
                 im.wood += x;
+                GameManager.instance.planetManager.Planet.AddCO2(x);
                 break;
         }
         workingDays++;
