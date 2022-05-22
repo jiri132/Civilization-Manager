@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PopulationManager : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class PopulationManager : MonoBehaviour
     public List<Person> PeopleDead = new List<Person>();
     public int housingSpaces = 20;
 
-    public List<Person> WoodWorker, StoneWorker, Farmer;
+    public Text Housing,Population, Employed, UnEmployed;
+    public Slider slider;
+    public Dropdown dropdown;
+
+    public List<Person> WoodWorker, StoneWorker, Farmer, Unemployed;
     public List<Person> workless()
     {
         List<Person> p = new List<Person>();
@@ -18,6 +23,24 @@ public class PopulationManager : MonoBehaviour
         }
         return p;
     }
+
+    private void PopulationTextUpdate()
+    {
+        UIManager.ChangeText(Employed,"Employed: " + (WoodWorker.Count + StoneWorker.Count + Farmer.Count));
+        UIManager.ChangeText(Housing, "Housing space: " + housingSpaces);
+        UIManager.ChangeText(Population, "Population: " + PeopleAlive.Count);
+        UIManager.ChangeText(UnEmployed, "UnEmployed: " + workless().Count);
+    }
+    private void PopulationSliderUpdate()
+    {
+        SliderMaxValue(slider);
+    }
+    public void PopulationUIUpdate()
+    {
+        PopulationTextUpdate();
+        PopulationSliderUpdate();
+    }
+
     public void PopulationCalculation()
     {
         foreach (Person person in PeopleAlive.ToArray())
@@ -32,14 +55,32 @@ public class PopulationManager : MonoBehaviour
         }
     }
 
+    public void SliderAssign()
+    {
+        for (int i = 0; i < slider.value; i++)
+        {
+            AssignWorkers((Jobs.JOBS)dropdown.value);
+        }
+    }
+
+    private void SliderMaxValue(Slider slider)
+    {
+        Debug.Log(workless().Count);
+        slider.maxValue = workless().Count;
+    }
+
     //when you assign wrokers to a field 
     //it automaticly adds the grandmasters of the work
-    public void AssignWorkers(Jobs.JOBS job)
+    private void AssignWorkers(Jobs.JOBS job)
     {
         List<Person> GM, M, E, A, N;
         workerCatogarised(out GM, out M,out E,out A,out N);
         switch (job)
         {
+            case Jobs.JOBS.NOTHING:
+                workerToList(GM, M, E, A, N, Unemployed, Jobs.JOBS.FARMER);
+
+                break;
             case Jobs.JOBS.FARMER:
                 workerToList(GM,M,E,A,N, Farmer,Jobs.JOBS.FARMER);
 

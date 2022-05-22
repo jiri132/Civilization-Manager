@@ -33,15 +33,30 @@ public class GameManager : MonoBehaviour
         populationManager = GameObject.FindObjectOfType<PopulationManager>();
         inventoryManager = GameObject.FindObjectOfType<inventoryManager>();
         planetManager = GameObject.FindObjectOfType<PlanetManager>();
+
+        UIUpdates();
+        
     }
     #endregion
     #region #gameLoop
 
 
+    private void UIUpdates()
+    {
+        populationManager.PopulationUIUpdate();
+        inventoryManager.InventoryUpdate();
+    }
+
     public void DayCalculations()
     {
+        //population
         populationManager.PopulationCalculation();
+        populationManager.PopulationUIUpdate();
+
+        //planet
         planetManager.PlanetCalculation();
+
+        //inventory
         inventoryManager.InventoryUpdate();
     }
 

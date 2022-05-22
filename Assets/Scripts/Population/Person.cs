@@ -113,6 +113,7 @@ public class Person
             GameManager.instance.populationManager.PeopleAlive.Remove(this);
             GameManager.instance.populationManager.PeopleDead.Add(this);
         }
+        GameManager.instance.inventoryManager.food = FoodStorage;
     }
 
     public void GrowingUp()

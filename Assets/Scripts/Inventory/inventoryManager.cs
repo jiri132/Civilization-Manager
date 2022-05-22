@@ -13,8 +13,8 @@ public class inventoryManager : MonoBehaviour
 
     public void InventoryUpdate()
     {
-        UIManager.ChangeText(tfood, food);
-        UIManager.ChangeText(twood, wood);
-        UIManager.ChangeText(tstone, stone);
+        UIManager.ChangeText(tfood,"Food: " + food);
+        UIManager.ChangeText(twood,"Wood: " + wood);
+        UIManager.ChangeText(tstone,"Stone: " + stone);
     }
 }
