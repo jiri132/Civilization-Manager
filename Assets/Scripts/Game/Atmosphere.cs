@@ -11,20 +11,27 @@ public class Atmosphere
     public int Oxygen = (int)(int.MaxValue * 0.21f);
     public int Argon = (int)(int.MaxValue * 0.0097f);
     public int CarbonDioxide = (int)(int.MaxValue * 0.0003f);
-
+    public float totalParticles()
+    {
+        return (Nitrogen + Oxygen + Argon + CarbonDioxide);
+    }
 
 
     private float[] GetDataSetOfAtmosphere()
     {
+        float tp = totalParticles();
+
         return new float[] {
-            (float)Nitrogen / int.MaxValue,
-            (float)Oxygen / int.MaxValue,
-            (float)Argon / int.MaxValue,
-            (float)CarbonDioxide / int.MaxValue
+            (float)Nitrogen / tp,
+            (float)Oxygen / tp,
+            (float)Argon / tp,
+            (float)CarbonDioxide / tp
         };
 
 
     }
+
+
 
     public void LoadPieChart()
     {
